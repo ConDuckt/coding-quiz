@@ -1,12 +1,16 @@
-// display start button
+// question and display variables
 var startButton = document.querySelector("#start-button");
 var question = document.querySelector("#question");
 var answers = document.querySelector("#answers");
 var result = document.querySelector("#result");
+
+// Timer variables
 var timeDisplay = document.querySelector("#time-display");
-var timeRemaining = 10;
+var timeRemaining = 60;
 
-
+// Scorecard variables
+var score = document.querySelector("#score");
+var scoreCount = localStorage.getItem("scoreCount");
 
 // display questions and multiple choice answer buttons
     // question 1 variables
@@ -20,10 +24,14 @@ var timeRemaining = 10;
     q1a3.textContent = "Answer Q1A3";
     q1a4.textContent = "Answer Q1A4";
 
+var correctAnswers = [q1a1]
+var incorrectAnswers = [q1a2, q1a3, q1a4]
 
 // on click, record score as 0 and start timer
 
 startButton.addEventListener("click", function() {
+    event.preventDefault();
+    scoreCount = 0;
     startButton.style.display ="none";
 
         var timer = setInterval(function() {
@@ -54,8 +62,10 @@ startButton.addEventListener("click", function() {
 
 q1a1.addEventListener("click", function() {
     result.textContent = "You got it!";
+    scoreCount++;
+    score.textContent = scoreCount;
+    localStorage.setItem("scoreCount", scoreCount);
 });
-
 
 /* if incorrect:
     stop player from being able to guess again
@@ -64,18 +74,23 @@ q1a1.addEventListener("click", function() {
 
 q1a2.addEventListener("click", function() {
     result.textContent = "Wrong!";
+    timeRemaining = timeRemaining - 5;
 });
 
 q1a3.addEventListener("click", function() {
     result.textContent = "Wrong!";
+    timeRemaining = timeRemaining - 5;
 });
 
 q1a4.addEventListener("click", function() {
     result.textContent = "Wrong!";
+    timeRemaining = timeRemaining - 5;
 });
 
 // when final question answered, reduce timer to 0
+
 // when timer 0, display final score and name entry form
+
 // on submit, save and display name + score and display them along with game restart button
 // on restart, reset game logic and UI (less names+scores) and return to step 1
 
