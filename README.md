@@ -19,6 +19,8 @@ https://learntheweb.courses/topics/html-semantics-checklist/ for HTML reminders
 
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/A_first_splash#example_%E2%80%94_guess_the_number_game For help with adapting pseudocode to my needs
 
+https://davidwalsh.name/event-delegate for event delegation/ streamlining my original eventListeners
+
 Also bootcamp exercises concerning appending, timer, and local data for JS.
 
 ## License
