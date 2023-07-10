@@ -16,35 +16,28 @@ var currentQuestionIndex = 0;
 
 var questionArray = [
    {
-        question: "question1",
-        choices: ["c1", "c2", "c3", "c4"],
-        correctChoice: "c3",
+        question: "Which of these languages is responsible for a webpage's structure?",
+        choices: ["HTML", "CSS", "JavaScript", "Python"],
+        correctChoice: "HTML",
     },
     {
-        question: "question2",
-        choices: ["c1", "c2", "c3", "c4"],
-        correctChoice: "c3",
+        question: "Which of these languages is responsible for a webpage's appearance?",
+        choices: ["HTML", "CSS", "JavaScript", "Python"],
+        correctChoice: "CSS",
     }  
 
 ];
 
-// display questions and multiple choice answer buttons
-    // question 1 variables
     var q1a1 = document.createElement("li");
     var q1a2 = document.createElement("li");
     var q1a3 = document.createElement("li");
     var q1a4 = document.createElement("li");
 
 
-    // var answerListItem = document.querySelectorAll("li")
-    // answerListItem.setAttribute("class", "choice");
-
     q1a1.textContent = "Correct Answer Q1A1";
     q1a2.textContent = "Incorrect Answer Q1A2";
     q1a3.textContent = "Answer Q1A3";
     q1a4.textContent = "Answer Q1A4";
-
-// on click, record score as 0 and start timer
 
 startButton.addEventListener("click", function(event) {
     event.preventDefault();
@@ -61,13 +54,6 @@ startButton.addEventListener("click", function(event) {
             }
         
         }, 1000);
-
-    // answers.textContent = "This is question 1.";
-    
-    // answers.appendChild(q1a1);
-    // answers.appendChild(q1a2);
-    // answers.appendChild(q1a3);
-    // answers.appendChild(q1a4);
 
     getQuestion();
 
@@ -97,33 +83,12 @@ function userChoice(e) {
         currentQuestionIndex++;
         score.textContent = scoreCount;
         localStorage.setItem("scoreCount", scoreCount);
-
         getQuestion();
-
-    }
-};
+    } else {
+        result.textContent = "Answer is incorrect!";
+}};
 
 answersEl.addEventListener("click", userChoice);
-
-// var correctAnswer = [q1a1]
-// var incorrectAnswer = [q1a2, q1a3, q1a4]
-
-// on click, check whether answer is correct
-/* if correct:
-    stop player from being able to guess again
-    display "you got it" message
-    increase score by 1 and record new score */
-
-
-// document.getElementById("answers").addEventListener("click", function(correctAnswer) {
-//     if(correctAnswer.target && correctAnswer.target.nodeName === "LI") {
-//         result.textContent = "You got it!";
-//         scoreCount++;
-//         score.textContent = scoreCount;
-//         localStorage.setItem("scoreCount", scoreCount);
-//         }
-// });
-
 
 q1a1.addEventListener("click", function() {
     result.textContent = "You got it!";
@@ -132,19 +97,6 @@ q1a1.addEventListener("click", function() {
     localStorage.setItem("scoreCount", scoreCount);
 });
 
-/* if incorrect:
-    stop player from being able to guess again
-    display "you suck" message
-    decrease timer by 5s */
-
-
-// document.getElementById("answers").addEventListener("click", function(incorrectAnswer) {
-//     if(incorrectAnswer.target && incorrectAnswer.target.nodeName === "LI") {
-//         result.textContent = "Wrong!";
-//         timeRemaining = timeRemaining - 5;
-//         }
-// });
-
 console.log("score", score)
 console.log("time", timeRemaining)
 
@@ -152,33 +104,3 @@ q1a2.addEventListener("click", function() {
     result.textContent = "Wrong!";
     timeRemaining = timeRemaining - 5;
 });
-
-// q1a3.addEventListener("click", function() {
-//     result.textContent = "Wrong!";
-//     timeRemaining = timeRemaining - 5;
-// });
-
-// q1a4.addEventListener("click", function() {
-//     result.textContent = "Wrong!";
-//     timeRemaining = timeRemaining - 5;
-// });
-
-// when final question answered, reduce timer to 0
-
-// when timer 0, display final score and name entry form
-
-// on submit, save and display name + score and display them along with game restart button
-// on restart, reset game logic and UI (less names+scores) and return to step 1
-
-
-
-    // question 2 variables
-    // var q2a1 = document.createElement("li");
-    // var q2a2 = document.createElement("li");
-    // var q2a3 = document.createElement("li");
-    // var q2a4 = document.createElement("li");
-
-    // q2a1.textContent = "Answer Q2A1";
-    // q2a2.textContent = "Answer Q2A2";
-    // q2a3.textContent = "Answer Q2A3";
-    // q2a4.textContent = "Answer Q2A4";
