@@ -29,18 +29,20 @@ var questionArray = [
     }
 ];
 
+var timer;
+
 startButton.addEventListener("click", function (event) {
     event.preventDefault();
     scoreCount = 0;
     startButton.style.display = "none";
 
-    var timer = setInterval(function () {
+    timer = setInterval(function () {
         timeRemaining--;
         timeDisplay.textContent = timeRemaining + " seconds remaining.";
 
         if (timeRemaining === 0) {
             clearInterval(timer);
-            sendMessage();
+            endQuiz();
         }
     }, 1000);
 
@@ -50,7 +52,7 @@ startButton.addEventListener("click", function (event) {
 function getQuestion() {
     if (currentQuestionIndex >= questionArray.length || timeRemaining <= 0) {
         clearInterval(timer);
-        sendMessage();
+        endQuiz();
         return;
     }
 
@@ -77,12 +79,33 @@ function userChoice(e) {
         currentQuestionIndex++;
         score.textContent = scoreCount;
         localStorage.setItem("scoreCount", scoreCount);
+
+        if (currentQuestionIndex === questionArray.length) {
+            clearInterval(timer);
+            endQuiz();
+        } else {
+            getQuestion();
+        }
     } else {
         result.textContent = "Answer is incorrect!";
         currentQuestionIndex++;
         timeRemaining -= 5;
+
+        if (currentQuestionIndex === questionArray.length) {
+            clearInterval(timer);
+            endQuiz();
+        } else {
+            getQuestion();
+        }
     }
-    getQuestion();
+}
+
+function endQuiz() {
+    question.style.display = "none";
+    answersEl.style.display = "none";
+    result.style.display = "none";
+    timeDisplay.textContent = "Time's up!";
+    score.textContent = "Your score: " + scoreCount;
 }
 
 answersEl.addEventListener("click", userChoice);
